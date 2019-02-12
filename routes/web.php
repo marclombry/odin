@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home','LinkController@index')->name('link');
 Route::get('/home/{param}','LinkController@list')->name('list');
-Route::post('/link','LinkController@store');
+Route::post('/home','LinkController@store');
