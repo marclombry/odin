@@ -13,9 +13,11 @@
               <p class="card-text">{{ucfirst($link->category)}}</p>
             </div>
           </div>
-          @endforeach
+          @endforeach   
       </div>
-
+      @if(isset($links))
+         {{ $links->links() }}
+      @endif
   </div>
   <div class="col-md-3">
     <!-- récupéré toute les category différente puis les afficher avec un list group bootsrap-->

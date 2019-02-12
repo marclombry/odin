@@ -13,12 +13,12 @@ class LinkController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $links = Link::where('iduser',$user_id);
+        $links = Link::where('iduser',$user_id)->paginate(10);
         $lists = DB::table('links')
             ->select('category')
             ->groupBy('category')
             ->get();
-        return view('pages.links',['links' => $links->get(),'lists' => $lists]);
+        return view('pages.links',['links' => $links,'lists' => $lists]);
     }
 
     public function store()
@@ -38,8 +38,8 @@ class LinkController extends Controller
             ->select('category')
             ->groupBy('category')
             ->get();
-        $links = Link::where('iduser',$user_id);
-        return view('pages.links',['links' => $links->get(),'lists' => $lists]);
+        $links = Link::where('iduser',$user_id)->paginate(10);
+        return view('pages.links',['links' => $links,'lists' => $lists]);
         
     }
 
@@ -47,11 +47,12 @@ class LinkController extends Controller
     {
         $user_id = Auth::user()->id;
         $links = Link::where('iduser',$user_id)
-        ->where('category',$param);
+        ->where('category',$param)
+        ->paginate(10);
         $lists = DB::table('links')
             ->select('category')
             ->groupBy('category')
             ->get();
-        return view('pages.links',['links' => $links->get(),'lists' => $lists]);
+        return view('pages.links',['links' => $links,'lists' => $lists]);
     }
 }
